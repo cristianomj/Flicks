@@ -14,6 +14,7 @@
 		4E5EBDD61C626EC90073252A /* FlicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5EBDD51C626EC90073252A /* FlicksViewController.swift */; };
 		4E5EBDD91C6287610073252A /* FlickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5EBDD81C6287610073252A /* FlickCell.swift */; };
 		4E6054BD1C62ECB3005FEDCC /* Flicks.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4E6054BC1C62ECB3005FEDCC /* Flicks.gif */; };
+		4E6054C01C62F433005FEDCC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6054BF1C62F433005FEDCC /* Constants.swift */; };
 		FD09E96E4F6E881FB68DB4CF /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		4E5EBDD51C626EC90073252A /* FlicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlicksViewController.swift; sourceTree = "<group>"; };
 		4E5EBDD81C6287610073252A /* FlickCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickCell.swift; sourceTree = "<group>"; };
 		4E6054BC1C62ECB3005FEDCC /* Flicks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Flicks.gif; sourceTree = "<group>"; };
+		4E6054BF1C62F433005FEDCC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8D9BD2F45E0BFDD5C78C7B9B /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 		4E5EBDC21C626D7E0073252A /* Flicks */ = {
 			isa = PBXGroup;
 			children = (
+				4E6054BE1C62F418005FEDCC /* Constants */,
 				4E5EBDDA1C62877A0073252A /* View Controllers */,
 				4E5EBDD71C6287210073252A /* Views */,
 				4E5EBDC31C626D7E0073252A /* AppDelegate.swift */,
@@ -99,6 +102,14 @@
 				4E6054BC1C62ECB3005FEDCC /* Flicks.gif */,
 			);
 			name = Gif;
+			sourceTree = "<group>";
+		};
+		4E6054BE1C62F418005FEDCC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4E6054BF1C62F433005FEDCC /* Constants.swift */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 		6C6EE8105B2B9988B5EE121C /* Pods */ = {
@@ -245,6 +256,7 @@
 				4E5EBDD61C626EC90073252A /* FlicksViewController.swift in Sources */,
 				4E5EBDD91C6287610073252A /* FlickCell.swift in Sources */,
 				4E5EBDC41C626D7E0073252A /* AppDelegate.swift in Sources */,
+				4E6054C01C62F433005FEDCC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,9 +32,9 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // Create the NSURLRequest
-    func createNSURLRequest() -> NSURLRequest {
+    func createNSURLRequest(tmdbEndPoint: String) -> NSURLRequest {
         let apiKey = "71731b29bc37cf711170078f3116ac38"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3\(tmdbEndPoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -49,7 +49,6 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
             delegate: nil,
             delegateQueue: NSOperationQueue.mainQueue()
         )
-        
         return session
     }
     
@@ -65,7 +64,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func getNowPlaying() {
-        let request = createNSURLRequest()
+        let request = createNSURLRequest(EndPoints.topRated)
         let session = configureSession()
         displayHUD()
         
@@ -87,7 +86,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        let request = createNSURLRequest()
+        let request = createNSURLRequest(EndPoints.topRated)
         let session = configureSession()
         displayHUD()
         

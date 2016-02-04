@@ -16,6 +16,8 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     
     var flicks: [NSDictionary]?
     
+    var defaultEndPoint = EndPoints.nowPlaying
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +25,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         
         initRefreshControl()
-        getNowPlaying()
+        getMoviesFromEndPoint(defaultEndPoint) // Gets movies now playing as default
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,8 +65,8 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.insertSubview(refreshControl, atIndex: 0)
     }
     
-    func getNowPlaying() {
-        let request = createNSURLRequest(EndPoints.topRated)
+    func getMoviesFromEndPoint(endPoint: String) {
+        let request = createNSURLRequest(endPoint)
         let session = configureSession()
         displayHUD()
         
@@ -86,7 +88,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        let request = createNSURLRequest(EndPoints.topRated)
+        let request = createNSURLRequest(defaultEndPoint)
         let session = configureSession()
         displayHUD()
         

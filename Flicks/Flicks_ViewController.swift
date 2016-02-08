@@ -10,11 +10,14 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var networkErrorView: NetworkingError!
+    @IBOutlet weak var searchBar: UISearchBar!
 
     var flicks: [NSDictionary]?
+    var filteredFlicks: [NSDictionary]?
     
     var defaultEndPoint = EndPoints.nowPlaying
     
@@ -24,10 +27,19 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        //searchBar = UISearchBar()
+        searchBar.delegate = self
+        //searchBar.sizeToFit()
+        
+        //flowLayout.scrollDirection = .Horizontal
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 10)
+        
         initRefreshControl()
         getMoviesFromEndPoint(defaultEndPoint) // Gets movies now playing as default
 
-        // Do any additional setup after loading the view.
+        navigationItem.titleView = searchBar
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,8 +48,8 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let flicks = flicks {
-            return flicks.count
+        if let filteredFlicks = filteredFlicks {
+            return filteredFlicks.count
         } else {
             return 0
         }
@@ -46,7 +58,7 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Flicks_Cell", forIndexPath: indexPath) as! Flicks_Cell
         
-        let flick = flicks![indexPath.row]
+        let flick = filteredFlicks![indexPath.row]
         let posterPath = flick["poster_path"] as! String
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
@@ -116,6 +128,7 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
                         if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                             data, options:[]) as? NSDictionary {
                                 self.flicks = responseDictionary["results"] as? [NSDictionary]
+                                self.filteredFlicks = self.flicks
                                 self.collectionView.reloadData()
                         }
                     }
@@ -150,6 +163,15 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
         } else {
             refreshControl.endRefreshing()
         }
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredFlicks = flicks
+        } else {
+            
+        }
+        collectionView.reloadData()
     }
     
 

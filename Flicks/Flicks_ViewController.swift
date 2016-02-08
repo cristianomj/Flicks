@@ -1,8 +1,8 @@
 //
-//  FlicksViewController.swift
+//  Flicks_ViewController.swift
 //  Flicks
 //
-//  Created by Cristiano Miranda on 2/3/16.
+//  Created by Cristiano Miranda on 2/7/16.
 //  Copyright © 2016 Cristiano Miranda. All rights reserved.
 //
 
@@ -10,11 +10,10 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class FlicksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var networkErrorView: NetworkingError!
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var networkingErrorView: NetworkingError!
-    
     var flicks: [NSDictionary]?
     
     var defaultEndPoint = EndPoints.nowPlaying
@@ -22,25 +21,42 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         initRefreshControl()
         getMoviesFromEndPoint(defaultEndPoint) // Gets movies now playing as default
-    }
-    
-    func hasConnectivity() -> Bool {
-        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
-        let networkStatus: Int = reachability.currentReachabilityStatus().rawValue
-        
-        networkingErrorView.hidden = networkStatus != 0
-        
-        return networkStatus != 0
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let flicks = flicks {
+            return flicks.count
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Flicks_Cell", forIndexPath: indexPath) as! Flicks_Cell
+        
+        let flick = flicks![indexPath.row]
+        let posterPath = flick["poster_path"] as! String
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+        
+        cell.posterView.setImageWithURL(imageUrl!)
+        
+        hasConnectivity()
+        
+        return cell
     }
     
     // Create the NSURLRequest
@@ -51,7 +67,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
-    
+        
         return request
     }
     
@@ -72,7 +88,16 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
     func initRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.insertSubview(refreshControl, atIndex: 0)
+        collectionView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    func hasConnectivity() -> Bool {
+        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
+        let networkStatus: Int = reachability.currentReachabilityStatus().rawValue
+        
+        networkErrorView.hidden = networkStatus != 0
+        
+        return networkStatus != 0
     }
     
     func getMoviesFromEndPoint(endPoint: String) {
@@ -84,16 +109,16 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
             let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
                 completionHandler: { (dataOrNil, response, error) in
                     
-                // Hide HUD once the network request comes back (must be done on main UI thread)
-                MBProgressHUD.hideHUDForView(self.view, animated: true)
-                
-                if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            self.flicks = responseDictionary["results"] as? [NSDictionary]
-                            self.tableView.reloadData()
+                    // Hide HUD once the network request comes back (must be done on main UI thread)
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    
+                    if let data = dataOrNil {
+                        if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                            data, options:[]) as? NSDictionary {
+                                self.flicks = responseDictionary["results"] as? [NSDictionary]
+                                self.collectionView.reloadData()
+                        }
                     }
-                }
             })
             task.resume()
         }
@@ -115,7 +140,7 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
                         if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                             data, options:[]) as? NSDictionary {
                                 self.flicks = responseDictionary["results"] as? [NSDictionary]
-                                self.tableView.reloadData()
+                                self.collectionView.reloadData()
                                 refreshControl.endRefreshing()
                         }
                     }
@@ -125,34 +150,6 @@ class FlicksViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             refreshControl.endRefreshing()
         }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let flicks = flicks {
-            return flicks.count
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FlickCell", forIndexPath: indexPath) as! FlickCell
-        
-        let flick = flicks![indexPath.row]
-        let title = flick["title"] as! String
-        let overview = flick["overview"] as! String
-        let posterPath = flick["poster_path"] as! String
-        
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-        let imageUrl = NSURL(string: baseUrl + posterPath)
-        
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        cell.posterView.setImageWithURL(imageUrl!)
-
-        hasConnectivity()
-        return cell
     }
     
 

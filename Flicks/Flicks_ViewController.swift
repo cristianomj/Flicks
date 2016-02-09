@@ -16,8 +16,8 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var networkErrorView: NetworkingError!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var flicks: [NSDictionary]?
-    var filteredFlicks: [NSDictionary]?
+    var movies: [NSDictionary]?
+    var filteredMovies: [NSDictionary]?
     
     var defaultEndPoint = EndPoints.nowPlaying
     
@@ -48,8 +48,8 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let filteredFlicks = filteredFlicks {
-            return filteredFlicks.count
+        if let filteredMovies = filteredMovies {
+            return filteredMovies.count
         } else {
             return 0
         }
@@ -58,13 +58,14 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Flicks_Cell", forIndexPath: indexPath) as! Flicks_Cell
         
-        let flick = filteredFlicks![indexPath.row]
-        let posterPath = flick["poster_path"] as! String
+        let movie = filteredMovies![indexPath.row]
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
-        let imageUrl = NSURL(string: baseUrl + posterPath)
         
-        cell.posterView.setImageWithURL(imageUrl!)
+        if let posterPath = movie["poster_path"] as? String {
+            let imageUrl = NSURL(string: baseUrl + posterPath)
+            cell.posterView.setImageWithURL(imageUrl!)
+        }
         
         hasConnectivity()
         
@@ -127,8 +128,8 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
                     if let data = dataOrNil {
                         if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                             data, options:[]) as? NSDictionary {
-                                self.flicks = responseDictionary["results"] as? [NSDictionary]
-                                self.filteredFlicks = self.flicks
+                                self.movies = responseDictionary["results"] as? [NSDictionary]
+                                self.filteredMovies = self.movies
                                 self.collectionView.reloadData()
                         }
                     }
@@ -152,7 +153,7 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
                     if let data = dataOrNil {
                         if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                             data, options:[]) as? NSDictionary {
-                                self.flicks = responseDictionary["results"] as? [NSDictionary]
+                                self.movies = responseDictionary["results"] as? [NSDictionary]
                                 self.collectionView.reloadData()
                                 refreshControl.endRefreshing()
                         }
@@ -167,7 +168,7 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            filteredFlicks = flicks
+            filteredMovies = movies
         } else {
             
         }
@@ -175,14 +176,19 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPathForCell(cell)
+        let movie = movies![indexPath!.row]
+        
+        let detailViewController = segue.destinationViewController as! DetailsViewController
+        detailViewController.movie = movie
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

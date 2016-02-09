@@ -19,6 +19,7 @@
 		4E75BAD91C682BD500FD42A6 /* Flicks_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75BAD81C682BD500FD42A6 /* Flicks_ViewController.swift */; };
 		4E75BADB1C682C8B00FD42A6 /* Flicks_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75BADA1C682C8B00FD42A6 /* Flicks_Cell.swift */; };
 		4E75BADD1C6852EE00FD42A6 /* Flicks.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4E75BADC1C6852EE00FD42A6 /* Flicks.gif */; };
+		4E75BADF1C696F8E00FD42A6 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75BADE1C696F8E00FD42A6 /* DetailsViewController.swift */; };
 		FD09E96E4F6E881FB68DB4CF /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		4E75BAD81C682BD500FD42A6 /* Flicks_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flicks_ViewController.swift; sourceTree = "<group>"; };
 		4E75BADA1C682C8B00FD42A6 /* Flicks_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flicks_Cell.swift; sourceTree = "<group>"; };
 		4E75BADC1C6852EE00FD42A6 /* Flicks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Flicks.gif; sourceTree = "<group>"; };
+		4E75BADE1C696F8E00FD42A6 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		8D9BD2F45E0BFDD5C78C7B9B /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 			children = (
 				4E5EBDD51C626EC90073252A /* FlicksViewController.swift */,
 				4E75BAD81C682BD500FD42A6 /* Flicks_ViewController.swift */,
+				4E75BADE1C696F8E00FD42A6 /* DetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				4E5EBDD61C626EC90073252A /* FlicksViewController.swift in Sources */,
 				4E5EBDD91C6287610073252A /* FlickCell.swift in Sources */,
+				4E75BADF1C696F8E00FD42A6 /* DetailsViewController.swift in Sources */,
 				4E5EBDC41C626D7E0073252A /* AppDelegate.swift in Sources */,
 				4E75BAD91C682BD500FD42A6 /* Flicks_ViewController.swift in Sources */,
 				4E6054C01C62F433005FEDCC /* Constants.swift in Sources */,

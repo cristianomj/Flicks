@@ -20,6 +20,7 @@
 		4E75BADB1C682C8B00FD42A6 /* Flicks_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75BADA1C682C8B00FD42A6 /* Flicks_Cell.swift */; };
 		4E75BADD1C6852EE00FD42A6 /* Flicks.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4E75BADC1C6852EE00FD42A6 /* Flicks.gif */; };
 		4E75BADF1C696F8E00FD42A6 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E75BADE1C696F8E00FD42A6 /* DetailsViewController.swift */; };
+		4E75BAE11C69797000FD42A6 /* Flicks_2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4E75BAE01C69797000FD42A6 /* Flicks_2.gif */; };
 		FD09E96E4F6E881FB68DB4CF /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		4E75BADA1C682C8B00FD42A6 /* Flicks_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flicks_Cell.swift; sourceTree = "<group>"; };
 		4E75BADC1C6852EE00FD42A6 /* Flicks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Flicks.gif; sourceTree = "<group>"; };
 		4E75BADE1C696F8E00FD42A6 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		4E75BAE01C69797000FD42A6 /* Flicks_2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Flicks_2.gif; sourceTree = "<group>"; };
 		8D9BD2F45E0BFDD5C78C7B9B /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		A49677B476CBCBBADD99A702 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 		4E6054BB1C62EC83005FEDCC /* Gif */ = {
 			isa = PBXGroup;
 			children = (
+				4E75BAE01C69797000FD42A6 /* Flicks_2.gif */,
 				4E75BADC1C6852EE00FD42A6 /* Flicks.gif */,
 			);
 			name = Gif;
@@ -220,6 +223,7 @@
 			files = (
 				4E5EBDCE1C626D7E0073252A /* LaunchScreen.storyboard in Resources */,
 				4E5EBDCB1C626D7E0073252A /* Assets.xcassets in Resources */,
+				4E75BAE11C69797000FD42A6 /* Flicks_2.gif in Resources */,
 				4E75BADD1C6852EE00FD42A6 /* Flicks.gif in Resources */,
 				4E5EBDC91C626D7E0073252A /* Main.storyboard in Resources */,
 			);

@@ -62,13 +62,13 @@ Filtering data in a Dictionary.
 
 **Flicks** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **0.5** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User can view movie details by tapping on a cell.
+- [x] User can view movie details by tapping on a cell.
 - [ ] User can select from a tab bar for either **Now Playing** or **Top Rated** movies.
 - [ ] Customize the selection effect of the cell.
 
@@ -90,7 +90,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/cristianomj/Flicks/blob/master/Flicks_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

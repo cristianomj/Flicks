@@ -34,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/cristianomj/Flicks/blob/master/Flicks.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/cristianomj/Flicks/blob/master/Gifs/Flicks.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -90,7 +90,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/cristianomj/Flicks/blob/master/Flicks_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/cristianomj/Flicks/blob/master/Gifs/Flicks_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

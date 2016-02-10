@@ -171,6 +171,17 @@ class Flicks_ViewController: UIViewController, UICollectionViewDataSource, UICol
             filteredMovies = movies
         } else {
             
+            var tempFilteredMovies = [NSDictionary]()
+            
+            for movie in movies! {
+                print(movie)
+                
+                if(movie["title"]!.lowercaseString.rangeOfString(searchText.lowercaseString) != nil) {
+                    tempFilteredMovies.append(movie)
+                }
+            }
+            
+            filteredMovies = tempFilteredMovies
         }
         collectionView.reloadData()
     }

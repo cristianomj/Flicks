@@ -11,4 +11,10 @@ import UIKit
 class Flicks_Cell: UICollectionViewCell {
     @IBOutlet weak var posterView: UIImageView!
     
+    override func prepareForReuse() {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.redColor()
+        selectedBackgroundView = backgroundView
+    }
+    
 }

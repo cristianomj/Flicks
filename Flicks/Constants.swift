@@ -15,3 +15,16 @@ struct EndPoints {
     static let topRated = "/movie/top_rated"
     static let upcoming = "/movie/upcoming"
 }
+
+struct EndPointTitle {
+    static let latest = "Latest"
+    static let nowPlaying = "Now Playing"
+    static let popular = "Popular"
+    static let topRated = "Top Rated"
+    static let upcoming = "Upcoming"
+}
+
+struct Images {
+    static let nowPlaying = "now_playing"
+    static let topRated = "top_rated"
+}
